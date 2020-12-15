@@ -1,0 +1,357 @@
+@charset "UTF-8";
+/* CSS Document */
+/* ==========================================================================
+   header 
+   ========================================================================== */
+.degrade_verde{
+	background: rgba(35,189,184,1);
+background: -moz-linear-gradient(-45deg, rgba(35,189,184,1) 0%, rgba(67,231,148,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(35,189,184,1)), color-stop(100%, rgba(67,231,148,1)));
+background: -webkit-linear-gradient(-45deg, rgba(35,189,184,1) 0%, rgba(67,231,148,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(35,189,184,1) 0%, rgba(67,231,148,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(35,189,184,1) 0%, rgba(67,231,148,1) 100%);
+background: linear-gradient(135deg, rgba(35,189,184,1) 0%, rgba(67,231,148,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#23bdb8', endColorstr='#43e794', GradientType=1 );
+}
+.degrade_morado{
+	background: rgba(154,86,255,1);
+background: -moz-linear-gradient(-45deg, rgba(154,86,255,1) 0%, rgba(215,138,253,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(154,86,255,1)), color-stop(100%, rgba(215,138,253,1)));
+background: -webkit-linear-gradient(-45deg, rgba(154,86,255,1) 0%, rgba(215,138,253,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(154,86,255,1) 0%, rgba(215,138,253,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(154,86,255,1) 0%, rgba(215,138,253,1) 100%);
+background: linear-gradient(135deg, rgba(154,86,255,1) 0%, rgba(215,138,253,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9a56ff', endColorstr='#d78afd', GradientType=1 );
+}
+.degrade_rosa{
+	background: rgba(227,108,217,1);
+background: -moz-linear-gradient(-45deg, rgba(227,108,217,1) 0%, rgba(254,96,174,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(227,108,217,1)), color-stop(100%, rgba(254,96,174,1)));
+background: -webkit-linear-gradient(-45deg, rgba(227,108,217,1) 0%, rgba(254,96,174,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(227,108,217,1) 0%, rgba(254,96,174,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(227,108,217,1) 0%, rgba(254,96,174,1) 100%);
+background: linear-gradient(135deg, rgba(227,108,217,1) 0%, rgba(254,96,174,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e36cd9', endColorstr='#fe60ae', GradientType=1 );
+}
+.sombra_11{
+	-webkit-box-shadow: -5px 10px 5px -10px rgba(150,147,150,0.31);
+-moz-box-shadow: -5px 10px 5px -10px rgba(150,147,150,0.31);
+box-shadow: -5px 10px 5px -10px rgba(150,147,150,0.31);
+}
+.fondo_panel{
+	background: #FFFFFF;
+	border-radius: 5px;
+}
+.sombra_panel_22{
+	-webkit-box-shadow: 0px 0px 9px -2px rgba(209,209,209,1);
+-moz-box-shadow: 0px 0px 9px -2px rgba(209,209,209,1);
+box-shadow: 0px 0px 9px -2px rgba(209,209,209,1);
+}
+.bordes_gri_1{
+	border: #D8D8D8 solid 1px;
+}
+.item_1_txt{
+	color: #464A53; font-size: 14px;
+}
+.item_2_txt{
+	color: #ABAFB3;
+	font-size: 14px;
+}
+.rounded {
+  border-radius: 1.25rem !important;
+}
+.lupa_buscar{
+	background:url("../../images/lupa.png")no-repeat  95%; width: 300px;
+}
+.borde_paga_1{
+	background: #F4F4F4; border-radius: 26px; border: #E2E2E2 solid 1px;
+}
+.borde_paga_2{
+	background: #D7CFF8; border-radius: 26px; border: #D1CCEA solid 1px;
+}
+
+
+
+@media (max-width:1200px) {}
+   @media (max-width: 992px){}
+   @media (max-width: 768px){
+	  
+}
+@media (max-width: 575px){
+	
+}
+@media (max-width: 480px){}
+@media (max-width: 375px){
+
+	
+}
+@media (max-width: 320px){
+	
+}
+/* ==========================================================================
+   Fin header 
+   ========================================================================== */
+
+/* ==========================================================================
+   MAIN INDEX
+   ========================================================================== */
+.shadow {
+  box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.10) !important;
+}
+/* ==========================================================================
+   FIN MAIN INDEX
+   ========================================================================== */
+
+/* ==========================================================================
+   footer 
+   ========================================================================== */
+  
+ @media (max-width:1200px) {}
+   @media (max-width: 992px){}
+   @media (max-width: 768px){}
+@media (max-width: 575px){}
+@media (max-width: 480px){}
+@media (max-width: 375px){}
+@media (max-width: 320px){}
+/* ==========================================================================
+   Fin footer
+   ========================================================================== */
+
+
+
+/* ==========================================================================
+   CLASES GLOBALES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   ========================================================================== */
+
+
+/* ==========================================================================
+   COLORES de a web
+   ========================================================================== */
+
+/* ==========================================================================
+   Textos
+   ========================================================================== */
+
+
+h1{
+	font-family: 'Futura Book';
+	font-size: 18px;
+}
+h2{
+	font-family: 'Futura Book';
+	font-size: 22px;
+}
+h3{
+	font-family: 'Futura Book';
+	color: #000000;
+	font-size: 36px;
+}
+h4{
+	font-family: 'Futura Book';
+	font-size: 24px;
+	
+}
+h5{
+	font-family: 'Futura Book';
+	font-size: 16px;
+	
+}
+h6{
+	font-family: 'Futura Book';
+	font-size: 13px;
+}
+p{
+	font-family: 'Montserrat light';
+	font-size: 16px;
+	color: #c8c8c8;
+	
+}
+b{
+	 font-family: 'Futura Book';
+	font-weight:bold !important;
+	
+}
+img, object, embed, video {
+	max-width: 100%;
+}
+.ie6 img {
+	width:100%;
+}
+body{
+	margin: 0; 
+	padding: 0;
+	font-family: 'Futura Book';
+	color:#464A53;
+	}
+/* ==========================================================================
+   font-face
+   ========================================================================== */
+
+@font-face {
+    font-family: 'Futura Book';
+    src: url('../fuentes/FuturaBT-Book.eot');
+    src: url('../fuentes/FuturaBT-Book.eot?#iefix') format('embedded-opentype'),
+        url('../fuentes/FuturaBT-Book.woff2') format('woff2'),
+        url('../fuentes/FuturaBT-Book.woff') format('woff'),
+        url('../fuentes/FuturaBT-Book.ttf') format('truetype'),
+        url('../fuentes/FuturaBT-Book.svg#FuturaBT-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat bold';
+    src: url('../fuentes/Montserrat-Bold.eot');
+    src: url('../fuentes/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fuentes/Montserrat-Bold.woff2') format('woff2'),
+       url('../fuentes/Montserrat-Bold.woff') format('woff'),
+        url('../fuentes/Montserrat-Bold.ttf') format('truetype'),
+        url('../fuentes/Montserrat-Bold.svg#Montserrat-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat light';
+    src: url('../fuentes/Montserrat-Light.eot');
+    src: url('../fuentes/Montserrat-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fuentes/Montserrat-Light.woff2') format('woff2'),
+        url('../fuentes/Montserrat-Light.woff') format('woff'),
+        url('../fuentes/Montserrat-Light.ttf') format('truetype'),
+        url('../fuentes/Montserrat-Light.svg#Montserrat-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat Semi';
+    src: url('../fuentes/Montserrat-SemiBold.eot');
+    src: url('../fuentes/Montserrat-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../fuentes/Montserrat-SemiBold.woff2') format('woff2'),
+        url('../fuentes/Montserrat-SemiBold.woff') format('woff'),
+        url('../fuentes/Montserrat-SemiBold.ttf') format('truetype'),
+        url('../fuentes/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura XBlk BT';
+    src: url('../fuentes/FuturaBT-ExtraBlack.eot');
+    src: url('../fuentes/FuturaBT-ExtraBlack.eot?#iefix') format('embedded-opentype'),
+        url('../fuentes/FuturaBT-ExtraBlack.woff2') format('woff2'),
+        url('../fuentes/FuturaBT-ExtraBlack.woff') format('woff'),
+        url('../fuentes/FuturaBT-ExtraBlack.ttf') format('truetype'),
+        url('../fuentes/FuturaBT-ExtraBlack.svg#FuturaBT-ExtraBlack') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+/* ==========================================================================
+  font-face
+   ========================================================================== */
+@media (max-width:1200px) {}
+   @media (max-width: 992px){}
+   @media (max-width: 768px){}
+@media (max-width: 575px){}
+@media (max-width: 480px){}
+@media (max-width: 375px){
+	h1{
+	font-family: 'Futura Book';
+	font-size: 20px;
+}
+}
+@media (max-width: 320px){}
+
+/* ==========================================================================
+   Textos
+   ========================================================================== */
+
+/* ==========================================================================
+  inputs
+   ========================================================================== */
+
+input[type=text]{
+	border:#a7a427 solid 1px;
+	background:none;
+	height: 35px;
+	font-size: 15px;
+	text-align: center;
+	
+	
+}
+input[type=button]{
+	border-radius: 0px;
+	background: #a7a427;
+	width: 100%;
+	border: none;
+	color: #FFFFFF;
+	height: 35px;
+   
+}
+
+input::placeholder{
+	color:#C1CFD9 !important;
+	
+}
+.select {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5px;
+    width: 100%;
+}    .select select {
+        font-family: 'Arial';
+        display: inline-block;
+        cursor: pointer;
+        padding: 5px 15px;
+        outline: 0;
+        border: 1px solid #e0e0e0;
+        border-radius: 25px;
+        background: #ffffff;
+        color: #aeb4c2;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+        .select select::-ms-expand {
+            display: none;
+        }
+        .select select:hover,
+        .select select:focus {
+            color: #000000;
+            background:#C1CFDA;
+        }
+        .select select:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+.select_arrow {
+    position: absolute;
+    top: 16px;
+    right: 15px;
+    pointer-events: none;
+    border-style: solid;
+    border-width: 8px 5px 0px 5px;
+    border-color: #7b7b7b transparent transparent transparent;
+}
+.select select:hover ~ .select_arrow,
+.select select:focus ~ .select_arrow {
+    border-top-color: #000000;
+}
+.select select:disabled ~ .select_arrow {
+    border-top-color: #cccccc;
+}
+@media (max-width:1200px) {}
+   @media (max-width: 992px){}
+   @media (max-width: 768px){}
+@media (max-width: 575px){}
+@media (max-width: 480px){}
+@media (max-width: 375px){}
+@media (max-width: 320px){}
+/* ==========================================================================
+  inputs
+   ========================================================================== */
+
+
+
+/* ==========================================================================
+   CLASES GLOBALES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   ========================================================================== */
+

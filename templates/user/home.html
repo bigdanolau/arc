@@ -1,0 +1,293 @@
+{% extends 'base_dash.html' %}
+{% load static %}
+{% block estilos %}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+{% endblock estilos %}
+
+{% block body %}
+
+
+
+<input type="hidden" name="url_base" id="url_base" />
+<div style="background: #F5F8FA">
+    <div class="d-flex">
+        <div class="px-3 d-none d-lg-block" style="background: #FFFFFF">
+            <div class="py-3 px-2"><img src="{% static 'images/evento.png' %}" alt="" /></div>
+            <div class="py-3 px-2"><img src="{% static 'images/tarea.png' %}" alt="" /></div>
+            <div class="py-3 px-2"><img src="{% static 'images/organizacion.png' %}" alt="" /></div>
+            <div class="py-3 px-2"><img src="{% static 'images/anotacion.png' %}" alt="" /></div>
+            <div class="py-3 px-2"><img src="{% static 'images/contactenos.png' %}" alt="" /></div>
+        </div>
+        <div class="flex-fill">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <div class="px-3 pt-3">Hola! Luis Miguel</div>
+                    <div class="px-3" style="color:#ABAFB3">Bienvenido a dash</div>
+                    <div style="padding-left: 1em;" id="buscar_fecha"></div>
+                </div>
+                <div style="font-size: 10px;" class="pt-3 pr-2">Ultima actualización: Mié 30 sep. 9:45</div>
+            </div>
+            <div class="p-3 row no-gutters">
+                <div class="col-lg-8 order-lg-1 order-2">
+                    <div class="row no-gutters">
+                        <div class="col-lg-4 p-2">
+                            <div class="sombra_panel_22 fondo_panel p-3">
+                                <h1>TOTAL DEUDA POR CLIENTE</h1>
+
+                                <div class="pt-2 py-3 select"><select>
+                                        <option>Ordenar por…</option>
+                                        <option>Filtro 1</option>
+                                        <option>Filtro 2</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <div class="row no-gutters justify-content-between">
+                                        <div class="item_1_txt">Cliente 34</div>
+                                        <div class="item_2_txt">$250.mil</div>
+                                        <div class="col-lg-12 pt-3">
+                                            <div style="background: #EFF0F0; height: 5px; border-radius:10px;">
+                                                <div class="d-flex">
+                                                    <div class="col-lg-6"
+                                                        style="background: #7F63F3; border-radius:10px;  height: 5px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters justify-content-between pt-4">
+                                        <div class="item_1_txt">Cliente 34</div>
+                                        <div class="item_2_txt">$250.mil</div>
+                                        <div class="col-lg-12 pt-2">
+                                            <div style="background: #EFF0F0; height: 5px; border-radius:10px;">
+                                                <div class="d-flex">
+                                                    <div class="col-lg-6"
+                                                        style="background: #7F63F3; border-radius:10px;  height: 5px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-8 p-2 ">
+                            <div class="sombra_panel_22 fondo_panel pt-3 px-3">
+                                <h1>TOTAL DEUDA PAGADA</h1>
+                                <table class="table" id="deudores">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">TORRE</th>
+                                            <th scope="col">PROPIETARIO</th>
+                                            <th scope="col">APARTAMENTO</th>
+                                            <th scope="col">TOTAL MES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for deudores in deudasMes%}
+                                        <tr>
+                                            <th scope="row">{{deudores.torre}}</th>
+                                            <td>{{deudores.propietario}}</td>
+                                            <td>{{deudores.apartamento}}</td>
+                                            <td class="moneda" valor="{{deudores.total_mes}}">{{deudores.total_mes}}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-lg-12 p-2">
+                            <div class="sombra_panel_22 fondo_panel p-3">
+                                <h1>CANTIDAD DE LLAMADOS DE COBRANZA POR AGENTES</h1>
+
+                                <div>Colocar grafica</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 px-2 pt-2 order-lg-2 order-1">
+                    <div class="degrade_verde mb-3" style="border-radius: 20px;">
+                        <div class="d-flex p-3">
+                            <div><img src="{% static 'images/grafica_1.png' %}" alt="" /></div>
+                            <div class="pl-3 pt-3">
+                                <div style="font-size: 34px;"><b class="text-light moneda"
+                                        valor="{{totalMes}}">{{totalMes}}</b></div>
+                                <div class="text-light"><b>TOTAL DE LA DEUDA</b></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="degrade_morado mb-3" style="border-radius: 20px;">
+                        <div class="d-flex p-3">
+                            <div><img src="{% static 'images/grafica_2.png' %}" alt="" /></div>
+                            <div class="pl-3 pt-3">
+                                <div style="font-size: 34px;"><b class="text-light">$816.000</b></div>
+                                <div class="text-light"><b>TOTAL RECAUDO</b></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="degrade_rosa mb-3" style="border-radius: 20px;">
+                        <div class="d-flex p-3">
+                            <div><img src="{% static 'images/grafica_3.png' %}" alt="" /></div>
+                            <div class="pl-3 pt-3">
+                                <div style="font-size: 34px;"><b class="text-light">230 / 600</b></div>
+                                <div class="text-light"><b>TOTAL GESTIÓN</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var url = window.location.href;
+        function updateDay(day) {
+            if (day.length == 1) {
+                return "0" + day;
+            } else {
+                return day;
+            }
+        }
+        $("#buscar_fecha").ready(function () {
+
+            historia_fecha();
+        });
+        function historia_fecha() {
+            if (url.indexOf('?') > -1) {
+                $('<input>').attr({
+                type: 'text',
+                id: 'busqueda_fecha',
+                name: 'daterange',
+                class: 'form-control',
+                style: 'border: gray solid 1px;',
+                value: findGetParameter("fechaf") + " " + "-" + " " + findGetParameter("fechaf_uno")
+            }).appendTo('#buscar_fecha');
+            }else{
+                $('<input>').attr({
+                type: 'text',
+                id: 'busqueda_fecha',
+                name: 'daterange',
+                class: 'form-control',
+                style: 'border: gray solid 1px;',
+            }).appendTo('#buscar_fecha');
+            }
+            
+            $(function () {
+                $('input[name="daterange"]').daterangepicker({
+                    opens: 'left'
+                }, function (start, end, label) {
+                    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                    var url = window.location.href;
+
+                    if (url.indexOf('?') > -1) {
+
+                        url = $('#url_base').val() + '?&fecha=' + start.format('YYYY-MM-DD') + '&&fecha_uno=' + end.format('YYYY-MM-DD') + '&fechaf=' + start.format('MM/DD/YYYY') + '&fechaf_uno=' + end.format('MM/DD/YYYY');
+                    } else {
+                        url += '?&fecha=' + start.format('YYYY-MM-DD') + '&&fecha_uno=' + end.format('YYYY-MM-DD') + '&fechaf=' + start.format('MM/DD/YYYY') + '&fechaf_uno=' + end.format('MM/DD/YYYY');
+                    }
+                    window.location.href = url;
+                });
+            });
+        }
+
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            location.search
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                });
+            return result;
+        }
+        $('#deudores').DataTable({
+
+            "language": {
+
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+
+            }
+        });
+        convertir_moneda();
+
+        $(".sorting").click(function () {
+
+            convertir_moneda();
+
+        })
+        $("input[aria-controls='deudores']").focus(function () {
+
+            $(document).keyup(function (event) {
+
+                event.preventDefault();
+
+                convertir_moneda();
+
+            })
+
+
+        })
+        $(".dataTables_paginate").click(function () {
+
+            convertir_moneda();
+
+        });
+    });
+
+    function convertir_moneda() {
+        $(".moneda").each(function () {
+            let valor = $(this).attr("valor");
+            $(this).text(formatter.format(valor));
+        });
+    }
+    const formatter = new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        minimumFractionDigits: 2
+    });
+
+</script>
+
+{% endblock scripts %}
