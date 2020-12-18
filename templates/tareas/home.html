@@ -1,0 +1,79 @@
+{% extends 'base_dash.html' %}
+{% load static %}
+{% block estilos %}
+<link href="{% static 'recursos/css/lobilist.css'%}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+    integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+    crossorigin="anonymous" />
+{% endblock estilos %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"
+    integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw=="
+    crossorigin="anonymous"></script>
+<script src="{% static 'recursos/js/lobilist.js'%}"></script>
+<script>
+    $(document).ready(function () {
+        $('.lobilist-demo').lobiList({
+            lists: [
+                {
+                    title: 'PENDIENTE',
+                    defaultStyle: 'lobilist-info',
+                    items: [
+                        {
+                            title: 'Floor cool cinders',
+                            description: 'Thunder fulfilled travellers folly, wading, lake.',
+                            dueDate: '2015-01-31'
+                        },
+                        {
+                            title: 'Periods pride',
+                            description: 'Accepted was mollis',
+                            done: true
+                        },
+                        {
+                            title: 'Flags better burns pigeon',
+                            description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank treacherously darkling.'
+                        },
+                        {
+                            title: 'Accepted was mollis',
+                            description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank treacherously darkling.',
+                            dueDate: '2015-02-02'
+                        }
+                    ]
+                },
+                {
+                    title: 'COMPLETADO',
+                    items: [
+                        {
+                            title: 'Composed trays',
+                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
+                        },
+                        {
+                            title: 'Chic leafy'
+                        },
+                        {
+                            title: 'Guessed interdum armies chirp writhes most',
+                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
+                            dueDate: '2015-02-04',
+                            done: true
+                        }
+                    ]
+                }
+            ]
+        });
+    });
+
+</script>
+{% endblock scripts %}
+
+{% block body %}
+
+<div class="flex-fill p-3 row no-gutters">
+    <div class="lobilist-demo" style="padding-top: 2em;padding-left: 2em;"></div>
+    <br>
+</div>
+
+
+{% endblock body %}

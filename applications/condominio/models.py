@@ -9,7 +9,10 @@ class Condominio(models.Model):
     propietario = models.TextField();
     torre = models.TextField(max_length = 4)
     apartamento = models.TextField(max_length= 4)
+    id_apartamento = models.TextField(max_length= 10,default="")
+    id_usuario = models.TextField(max_length= 10,default="")
     total_mes = models.TextField()
+    total_mes_log = models.TextField(default="")
     def __str__(self):
         return str(self.propietario) 
 

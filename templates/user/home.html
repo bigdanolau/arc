@@ -10,144 +10,185 @@
 
 
 <input type="hidden" name="url_base" id="url_base" />
-<div style="background: #F5F8FA">
-    <div class="d-flex">
-        <div class="px-3 d-none d-lg-block" style="background: #FFFFFF">
-            <div class="py-3 px-2"><img src="{% static 'images/evento.png' %}" alt="" /></div>
-            <div class="py-3 px-2"><img src="{% static 'images/tarea.png' %}" alt="" /></div>
-            <div class="py-3 px-2"><img src="{% static 'images/organizacion.png' %}" alt="" /></div>
-            <div class="py-3 px-2"><img src="{% static 'images/anotacion.png' %}" alt="" /></div>
-            <div class="py-3 px-2"><img src="{% static 'images/contactenos.png' %}" alt="" /></div>
+
+
+<div class="flex-fill">
+    <div class="d-flex justify-content-between">
+        <div>
+            <div class="px-3 pt-3">Hola!, {{user.nombre}}</div>
+            <div class="px-3" style="color:#ABAFB3">Bienvenido a dash</div>
+            <div style="padding-left: 1em;" id="buscar_fecha" style="width: 150%;"></div>
         </div>
-        <div class="flex-fill">
-            <div class="d-flex justify-content-between">
-                <div>
-                    <div class="px-3 pt-3">Hola! Luis Miguel</div>
-                    <div class="px-3" style="color:#ABAFB3">Bienvenido a dash</div>
-                    <div style="padding-left: 1em;" id="buscar_fecha"></div>
+        <div style="font-size: 10px;" class="pt-3 pr-2">Ultima actualización: Mié 30 sep. 9:45</div>
+    </div>
+    <div class="p-3 row no-gutters">
+        <div class="col-lg-8 order-lg-1 order-2">
+            <div class="row no-gutters">
+                <div class="col-lg-5 p-2">
+                    <div class="sombra_panel_22 fondo_panel p-3">
+                        <h1>TOTAL ABONOS</h1>
+
+                        <table class="table" id="abonos">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Apartamento</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pagos_d in pagos%}
+                                <tr>
+                                    <th scope="row">{{pagos_d.id_apartamento}}</th>
+                                    <td>{{pagos_d.monto}}</td>
+                                    <td>{{pagos_d.fecha}}</td>
+
+
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+
+
+                        <div>
+                           
+                           
+                        </div>
+                    </div>
+
                 </div>
-                <div style="font-size: 10px;" class="pt-3 pr-2">Ultima actualización: Mié 30 sep. 9:45</div>
+                <div class="col-lg-7 p-2 ">
+                    <div class="sombra_panel_22 fondo_panel pt-3 px-3">
+                        <h1>TOTAL DEUDA PAGADA</h1>
+                        <table class="table" id="deudores">
+                            <thead>
+                                <tr>
+                                    
+                                    <th scope="col">PROPIETARIO</th>
+                                    <th scope="col">APARTAMENTO</th>
+                                    <th scope="col">TOTAL MES</th>
+                                    <th scope="col">ACC</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for deudores in deudasMes%}
+                                <tr>
+                                    
+                                    <td>{{deudores.propietario}}</td>
+                                    <td>{{deudores.apartamento}}</td>
+                                    <td class="moneda" valor="{{deudores.total_mes}}">{{deudores.total_mes}}</td>
+                                    <td>
+                                        <a href="#" data-toggle="modal" data-target="#exampleModalLong" onclick="
+                                                    $('#propietario').val('{{deudores.propietario}}');
+                                                    $('#id_deuda').val('{{deudores.id}}');
+                                                    $('#apartamento').val('{{deudores.apartamento}}');
+                                                    $('#total_mes_modal').val('{{deudores.total_mes}}');">
+                                            Abonar
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+                <div class="col-lg-12 p-2">
+                    <div class="sombra_panel_22 fondo_panel p-3">
+                        <h1>CANTIDAD DE LLAMADOS DE COBRANZA POR AGENTES</h1>
+
+                        <div>Colocar grafica</div>
+                    </div>
+
+                </div>
             </div>
-            <div class="p-3 row no-gutters">
-                <div class="col-lg-8 order-lg-1 order-2">
-                    <div class="row no-gutters">
-                        <div class="col-lg-4 p-2">
-                            <div class="sombra_panel_22 fondo_panel p-3">
-                                <h1>TOTAL DEUDA POR CLIENTE</h1>
-
-                                <div class="pt-2 py-3 select"><select>
-                                        <option>Ordenar por…</option>
-                                        <option>Filtro 1</option>
-                                        <option>Filtro 2</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <div class="row no-gutters justify-content-between">
-                                        <div class="item_1_txt">Cliente 34</div>
-                                        <div class="item_2_txt">$250.mil</div>
-                                        <div class="col-lg-12 pt-3">
-                                            <div style="background: #EFF0F0; height: 5px; border-radius:10px;">
-                                                <div class="d-flex">
-                                                    <div class="col-lg-6"
-                                                        style="background: #7F63F3; border-radius:10px;  height: 5px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters justify-content-between pt-4">
-                                        <div class="item_1_txt">Cliente 34</div>
-                                        <div class="item_2_txt">$250.mil</div>
-                                        <div class="col-lg-12 pt-2">
-                                            <div style="background: #EFF0F0; height: 5px; border-radius:10px;">
-                                                <div class="d-flex">
-                                                    <div class="col-lg-6"
-                                                        style="background: #7F63F3; border-radius:10px;  height: 5px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+        </div>
+        <div class="col-lg-4 px-2 pt-2 order-lg-2 order-1">
+            <div class="degrade_verde mb-3" style="border-radius: 20px;">
+                <div class="d-flex p-3">
+                    <div><canvas id="totalmes_g"></canvas></div>
+                    <div class="pl-3 pt-3">
+                        <div style="font-size: 34px;"><b class="text-light moneda" valor="{{totalMes}}">{{totalMes}}</b>
                         </div>
-                        <div class="col-lg-8 p-2 ">
-                            <div class="sombra_panel_22 fondo_panel pt-3 px-3">
-                                <h1>TOTAL DEUDA PAGADA</h1>
-                                <table class="table" id="deudores">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">TORRE</th>
-                                            <th scope="col">PROPIETARIO</th>
-                                            <th scope="col">APARTAMENTO</th>
-                                            <th scope="col">TOTAL MES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for deudores in deudasMes%}
-                                        <tr>
-                                            <th scope="row">{{deudores.torre}}</th>
-                                            <td>{{deudores.propietario}}</td>
-                                            <td>{{deudores.apartamento}}</td>
-                                            <td class="moneda" valor="{{deudores.total_mes}}">{{deudores.total_mes}}
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-
-                                    </tbody>
-                                </table>
-
-
-                            </div>
-
-
-                        </div>
-                        <div class="col-lg-12 p-2">
-                            <div class="sombra_panel_22 fondo_panel p-3">
-                                <h1>CANTIDAD DE LLAMADOS DE COBRANZA POR AGENTES</h1>
-
-                                <div>Colocar grafica</div>
-                            </div>
-
-                        </div>
+                        <div class="text-light"><b>TOTAL DE LA DEUDA</b></div>
                     </div>
                 </div>
-                <div class="col-lg-4 px-2 pt-2 order-lg-2 order-1">
-                    <div class="degrade_verde mb-3" style="border-radius: 20px;">
-                        <div class="d-flex p-3">
-                            <div><img src="{% static 'images/grafica_1.png' %}" alt="" /></div>
-                            <div class="pl-3 pt-3">
-                                <div style="font-size: 34px;"><b class="text-light moneda"
-                                        valor="{{totalMes}}">{{totalMes}}</b></div>
-                                <div class="text-light"><b>TOTAL DE LA DEUDA</b></div>
-                            </div>
-                        </div>
+            </div>
+            <div class="degrade_morado mb-3" style="border-radius: 20px;">
+                <div class="d-flex p-3">
+                    <div><canvas id="totalrecaudo_g"></canvas></div>
+                    <div class="pl-3 pt-3">
+                        <div style="font-size: 34px;"><b class="text-light">$816.000</b></div>
+                        <div class="text-light"><b>TOTAL RECAUDO</b></div>
                     </div>
-                    <div class="degrade_morado mb-3" style="border-radius: 20px;">
-                        <div class="d-flex p-3">
-                            <div><img src="{% static 'images/grafica_2.png' %}" alt="" /></div>
-                            <div class="pl-3 pt-3">
-                                <div style="font-size: 34px;"><b class="text-light">$816.000</b></div>
-                                <div class="text-light"><b>TOTAL RECAUDO</b></div>
-                            </div>
-                        </div>
+                </div>
 
-                    </div>
-                    <div class="degrade_rosa mb-3" style="border-radius: 20px;">
-                        <div class="d-flex p-3">
-                            <div><img src="{% static 'images/grafica_3.png' %}" alt="" /></div>
-                            <div class="pl-3 pt-3">
-                                <div style="font-size: 34px;"><b class="text-light">230 / 600</b></div>
-                                <div class="text-light"><b>TOTAL GESTIÓN</b></div>
-                            </div>
-                        </div>
+            </div>
+            <div class="degrade_rosa mb-3" style="border-radius: 20px;">
+                <div class="d-flex p-3">
+                    <div><canvas id="totalgestion_g"></canvas></div>
+                    <div class="pl-3 pt-3">
+                        <div style="font-size: 34px;"><b class="text-light">230 / 600</b></div>
+                        <div class="text-light"><b>TOTAL GESTIÓN</b></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Añadir abono</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label>Propietario</label>
+                        <input type="hidden" id="id_deuda" name="id_deuda">
+                        <input type="text" id="propietario" name="propietario" disabled class="form-control">
+
+                    </div>
+                    <div class="form-group">
+                        <label>Apartamento</label>
+                        <input type="text" disabled class="form-control" id="apartamento" name="apartamento">
+                    </div>
+                    <div class="form-group addabono">
+                        <label>Total mes</label>
+                        <input disabled type="text" class="form-control" id="total_mes_modal" name="total_mes"
+                            data-thousands="." data-decimal="," data-precision="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Abonar</label>
+                        <input type="text" class="form-control" id="abono" name="abono" data-thousands="."
+                            data-decimal="," data-precision="0">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{{pagos.fecha}}
 {% endblock body %}
 
 
@@ -156,9 +197,13 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/f2/3.2.3/f2.js"></script>
 <script>
     $(document).ready(function () {
+
+
+
         var url = window.location.href;
         function updateDay(day) {
             if (day.length == 1) {
@@ -171,26 +216,29 @@
 
             historia_fecha();
         });
+        function addabono() {
+
+        }
         function historia_fecha() {
             if (url.indexOf('?') > -1) {
                 $('<input>').attr({
-                type: 'text',
-                id: 'busqueda_fecha',
-                name: 'daterange',
-                class: 'form-control',
-                style: 'border: gray solid 1px;',
-                value: findGetParameter("fechaf") + " " + "-" + " " + findGetParameter("fechaf_uno")
-            }).appendTo('#buscar_fecha');
-            }else{
+                    type: 'text',
+                    id: 'busqueda_fecha',
+                    name: 'daterange',
+                    class: 'form-control',
+                    style: 'border: gray solid 1px;width: 100%;',
+                    value: findGetParameter("fechaf") + " " + "-" + " " + findGetParameter("fechaf_uno")
+                }).appendTo('#buscar_fecha');
+            } else {
                 $('<input>').attr({
-                type: 'text',
-                id: 'busqueda_fecha',
-                name: 'daterange',
-                class: 'form-control',
-                style: 'border: gray solid 1px;',
-            }).appendTo('#buscar_fecha');
+                    type: 'text',
+                    id: 'busqueda_fecha',
+                    name: 'daterange',
+                    class: 'form-control',
+                    style: 'border: gray solid 1px;width: 100%;',
+                }).appendTo('#buscar_fecha');
             }
-            
+
             $(function () {
                 $('input[name="daterange"]').daterangepicker({
                     opens: 'left'
@@ -222,6 +270,35 @@
             return result;
         }
         $('#deudores').DataTable({
+
+            "language": {
+
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+
+            }
+        });
+        $('#abonos').DataTable({
 
             "language": {
 
@@ -288,6 +365,166 @@
         minimumFractionDigits: 2
     });
 
-</script>
 
+</script>
+<script>
+    var data1 = "{{porcentaje_mes}}";
+    console.log("{{pagosTotalMes}}");
+    $(function () {
+        $('#abono').maskMoney();
+    });
+    $(function () {
+        $('#total_mes_modal').maskMoney();
+    });
+
+    $(document).ready(function () {
+        const data = [{
+            x: '1',
+            y: parseInt(data1)
+        }];
+
+        const chart = new F2.Chart({
+            id: 'totalmes_g',
+            width: 110,
+            height: 110,
+            padding: 0,
+            pixelRatio: window.devicePixelRatio
+        });
+        chart.source(data, {
+            y: {
+                max: 100,
+                min: 0
+            }
+        });
+        chart.guide().text({
+            position: ['50%', '50%'],
+            content: parseFloat(data1) + '%',
+            style: {
+                fill: '#fff',
+            }
+        });
+        chart.axis(false);
+        chart.tooltip(false);
+
+        chart.coord('polar', {
+            transposed: true,
+            innerRadius: 0.8,
+            radius: 0.85,
+
+        });
+        chart.guide().arc({
+            start: [0, 0],
+            end: [1, 99.98],
+            top: false,
+            style: {
+                lineWidth: 15,
+                stroke: '#B9F8D8',
+                background: '#FFF'
+            }
+        });
+
+        chart.interval()
+            .position('x*y')
+            .size(15).color(
+                ['#6AE796']
+            )
+            .animate({
+                appear: {
+                    duration: 1200,
+                    easing: 'cubicIn'
+                }
+            });
+        chart.render();
+        const chart2 = new F2.Chart({
+            id: 'totalrecaudo_g',
+            width: 120,
+            height: 120,
+            padding: 0,
+            pixelRatio: window.devicePixelRatio
+        });
+        chart2.source(data, {
+            y: {
+                max: 100,
+                min: 0
+            }
+        });
+        chart2.axis(false);
+        chart2.tooltip(false);
+
+        chart2.coord('polar', {
+            transposed: true,
+            innerRadius: 0.8,
+            radius: 0.85,
+
+        });
+        chart2.guide().arc({
+            start: [0, 0],
+            end: [1, 99.98],
+            top: false,
+            style: {
+                lineWidth: 15,
+                stroke: '#F1D8FD',
+                background: '#FFF'
+            }
+        });
+
+        chart2.interval()
+            .position('x*y')
+            .size(15).color(
+                ['#D78AF9']
+            )
+            .animate({
+                appear: {
+                    duration: 1200,
+                    easing: 'cubicIn'
+                }
+            });
+        chart2.render();
+        const chart3 = new F2.Chart({
+            id: 'totalgestion_g',
+            width: 130,
+            height: 130,
+            padding: 0,
+            pixelRatio: window.devicePixelRatio
+        });
+        chart3.source(data, {
+            y: {
+                max: 100,
+                min: 0
+            }
+        });
+        chart3.axis(false);
+        chart3.tooltip(false);
+
+        chart3.coord('polar', {
+            transposed: true,
+            innerRadius: 0.8,
+            radius: 0.85,
+
+        });
+        chart3.guide().arc({
+            start: [0, 0],
+            end: [1, 99.98],
+            top: false,
+            style: {
+                lineWidth: 15,
+                stroke: '#FAE4F1',
+                background: '#FFF'
+            }
+        });
+
+        chart3.interval()
+            .position('x*y')
+            .size(15).color(
+                ['#ED5DAD']
+            )
+            .animate({
+                appear: {
+                    duration: 1200,
+                    easing: 'cubicIn'
+                }
+            });
+        chart3.render();
+    })
+</script>
 {% endblock scripts %}

@@ -17,6 +17,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#TRABAJAR CON MI PROPIO MODELO DE USUARIO
+AUTH_USER_MODEL = "users.User"
 
 # Application definition
 
@@ -28,7 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
-    'applications.condominio'
+    'applications.condominio',
+    'applications.tareas',
+    'applications.users',
+    'applications.pagos'
 
 ]
 
