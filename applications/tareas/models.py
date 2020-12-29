@@ -10,7 +10,8 @@ class TareaModel(models.Model):
     id_condominio = models.ForeignKey("users.User", on_delete=models.CASCADE, default="",limit_choices_to={'tipo': 'C'},related_name="condominio_id")
     fecha_vencimiento = models.DateField(default=datetime.date.today)
     fecha_creacion = models.DateField( auto_now_add=True)
-    
+    id_apartamento = models.IntegerField(default='')
+    file = models.FileField(upload_to='uploads', max_length=1000,default='')
     class Meta:
         verbose_name = "Tarea"
         verbose_name_plural = "tareas"

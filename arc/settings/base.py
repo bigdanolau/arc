@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'django_adminlte',
 
     # Optional: Skin for the admin interface
-    'django_adminlte_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',
     'applications.condominio',
-    'applications.tareas',
+    'applications.seguimiento',
     'applications.users',
     'applications.pagos',
 ]
