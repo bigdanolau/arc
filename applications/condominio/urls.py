@@ -5,6 +5,7 @@ from . import views
 
 app_name ="condominio"
 urlpatterns = [
+    path('', views.CondominioListView.as_view(),name="condominioHomeMain"),
     path('home', views.CondominioListView.as_view(),name="condominioHome"),
     path('importar', views.ImportarExcel.as_view())
     #incluyo las url propias
