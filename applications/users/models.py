@@ -6,7 +6,8 @@ from .managers import UserManager
 class User(AbstractBaseUser,PermissionsMixin):
     GENDER_CHOICES = [
         ('C',"Condominio"),
-        ('A',"administrador")
+        ('A',"administrador"),
+        ('E',"Empleado")
     ]
     username = models.CharField( max_length=30,unique= True)
     email = models.EmailField()

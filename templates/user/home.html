@@ -52,8 +52,8 @@
 
 
                         <div>
-                           
-                           
+
+
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
                         <table class="table" id="deudores">
                             <thead>
                                 <tr>
-                                    
+
                                     <th scope="col">PROPIETARIO</th>
                                     <th scope="col">APARTAMENTO</th>
                                     <th scope="col">TOTAL MES</th>
@@ -73,8 +73,10 @@
                             </thead>
                             <tbody>
                                 {% for deudores in deudasMes%}
+
+
                                 <tr>
-                                    
+
                                     <td>{{deudores.propietario}}</td>
                                     <td>{{deudores.apartamento}}</td>
                                     <td class="moneda" valor="{{deudores.total_mes}}">{{deudores.total_mes}}</td>
@@ -82,8 +84,23 @@
                                         <a href="#" data-toggle="modal" data-target="#exampleModalLong" onclick="
                                                     $('#propietario').val('{{deudores.propietario}}');
                                                     $('#id_deuda').val('{{deudores.id}}');
+                                                    $('#id_id_apartamento').val('{{deudores.id_apartamento}}');
+                                                    $('#id_apartamento').val('{{deudores.apartamento}}');
                                                     $('#apartamento').val('{{deudores.apartamento}}');
-                                                    $('#total_mes_modal').val('{{deudores.total_mes}}');">
+                                                    $('#id_id_usuario').val('{{user.id}}');
+                                                    $('#id_deuda option[value=´{{deudores.id_deuda}}´]').attr('selected', true);
+                                                    //$('#id_deuda').prop('disabled', true);
+
+                                                    $('#id_deuda').addClass('form-control');
+                                                    $('#id_nombre_propietario').val('{{deudores.propietario}}');
+                                                    const formatter = new Intl.NumberFormat('es-CO', {
+                                                        style: 'currency',
+                                                        currency: 'COP',
+                                                        minimumFractionDigits: 0
+                                                    });
+                                                    $('#total_mes_modal').val(formatter.format('{{deudores.total_mes}}'));
+                                                    
+                                                    ">
                                             Abonar
                                         </a>
 
@@ -115,7 +132,7 @@
                 <div class="d-flex p-3">
                     <div><canvas id="totalmes_g"></canvas></div>
                     <div class="pl-3 pt-3">
-                        <div style="font-size: 34px;"><b class="text-light moneda" valor="{{totalMes}}">{{totalMes}}</b>
+                        <div style="font-size: 34px;"><b class="text-light " id="totalmes" valor="{{totalMes}}">{{totalMes}}</b>
                         </div>
                         <div class="text-light"><b>TOTAL DE LA DEUDA</b></div>
                     </div>
@@ -125,7 +142,7 @@
                 <div class="d-flex p-3">
                     <div><canvas id="totalrecaudo_g"></canvas></div>
                     <div class="pl-3 pt-3">
-                        <div style="font-size: 34px;"><b class="text-light">$816.000</b></div>
+                        <div style="font-size: 34px;"><b class="text-light monto" id="total_recaudo_mes" valor="{{total_pagos_mes}}">{{total_pagos_mes}}</b></div>
                         <div class="text-light"><b>TOTAL RECAUDO</b></div>
                     </div>
                 </div>
@@ -159,30 +176,28 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label>Propietario</label>
-                        <input type="hidden" id="id_deuda" name="id_deuda">
-                        <input type="text" id="propietario" name="propietario" disabled class="form-control">
 
-                    </div>
-                    <div class="form-group">
-                        <label>Apartamento</label>
-                        <input type="text" disabled class="form-control" id="apartamento" name="apartamento">
-                    </div>
-                    <div class="form-group addabono">
-                        <label>Total mes</label>
-                        <input disabled type="text" class="form-control" id="total_mes_modal" name="total_mes"
-                            data-thousands="." data-decimal="," data-precision="0">
-                    </div>
-                    <div class="form-group">
-                        <label>Abonar</label>
-                        <input type="text" class="form-control" id="abono" name="abono" data-thousands="."
-                            data-decimal="," data-precision="0">
-                    </div>
 
+                <div class="form-group">
+                    <label>Apartamento</label>
+                    <input type="text" disabled class="form-control" id="apartamento" name="apartamento">
+                </div>
+                <div class="form-group addabono">
+                    <label>Total mes</label>
+                    <input disabled type="text" class="form-control " id="total_mes_modal" name="total_mes"
+                        data-thousands="." data-decimal="," data-precision="0">
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% for formulario in  form %}
+                    {{formulario.label}}
+                    {{formulario}}
+                    {% endfor %}
+                    <br>
                     <button type="submit" class="btn btn-primary">Añadir</button>
                 </form>
+
             </div>
 
         </div>
@@ -362,19 +377,18 @@
     const formatter = new Intl.NumberFormat('es-CO', {
         style: 'currency',
         currency: 'COP',
-        minimumFractionDigits: 2
+        minimumFractionDigits: 0
     });
 
-
+    $("#total_recaudo_mes").text(formatter.format('{{total_pagos_mes}}'))
+    $("#totalmes").text(formatter.format('{{totalMes}}'))
 </script>
 <script>
     var data1 = "{{porcentaje_mes}}";
-    console.log("{{pagosTotalMes}}");
+    console.log("{{totalMes}}");
     $(function () {
-        $('#abono').maskMoney();
-    });
-    $(function () {
-        $('#total_mes_modal').maskMoney();
+        //$('#id_monto').maskMoney({thousands:'.', decimal:',', allowZero:false});
+        //$('#total_recaudo_mes').maskMoney({thousands:'.', decimal:',', allowZero:false});
     });
 
     $(document).ready(function () {

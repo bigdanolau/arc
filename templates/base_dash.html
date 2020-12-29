@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>{% block titulo %}
       
     {% endblock titulo %}</title>
@@ -16,6 +16,7 @@
   {% endblock estilos %}
   </head>
   <body>
+ 
     <div>
         <div class="d-flex ">
               <div style="background: #7F63F4" class="py-3 px-3"><img src="{% static 'images/menu.png' %}" alt=""/></div>
@@ -23,9 +24,9 @@
                 <div class="d-flex justify-content-between px-3 ">
                     <div class="pt-3">{{user.empresa}}</div>
                 <div class="d-flex ">
-                      <!-- <div class="pt-2 px-3 d-lg-block d-none"><input type="search" class="bordes_gri_1 p-2 rounded pl-5 lupa_buscar"  placeholder="Buscar Productos"></div> -->
+                       <div class="pt-2 px-3 d-lg-block d-none"><input type="search" class="bordes_gri_1 p-2 rounded pl-5 lupa_buscar"  placeholder="Buscar Productos"></div> 
                       <div class="pt-3 px-4" style="border-left:#E5EDF0 solid 1px; border-right:#E5EDF0 solid 1px; "><img src="{% static 'images/notificacion.png' %}" alt=""/></div>
-                  <div class="px-4 pt-1"></div>
+                  <div class="px-4 pt-1"><img src="{% static 'images/user.png' %}" alt=""/></div>
                       <div class="pt-3"><a href="{% url 'Users:logout' %}"><img src="{% static 'images/salir.png' %}" alt=""/></a></div>
                   </div>
                 </div>

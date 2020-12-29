@@ -12,10 +12,10 @@ class DeudasManager (models.Manager):
 
     def listar_mes(self,usuario):
         today = datetime.datetime.today()
-        date1 = datetime.datetime(today.year, today.month, 1)
-        date2 = datetime.datetime(today.year, today.month, today.day)
+      
         
         resultado = self.filter(
-            fecha__range=(date1,date1)
+            fecha__month=today.month,
+            id_usuario = usuario
         )
         return resultado

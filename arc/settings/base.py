@@ -23,6 +23,12 @@ AUTH_USER_MODEL = "users.User"
 # Application definition
 
 INSTALLED_APPS = [
+    
+    # The general purpose templates
+    'django_adminlte',
+
+    # Optional: Skin for the admin interface
+    'django_adminlte_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,8 +39,7 @@ INSTALLED_APPS = [
     'applications.condominio',
     'applications.tareas',
     'applications.users',
-    'applications.pagos'
-
+    'applications.pagos',
 ]
 
 MIDDLEWARE = [

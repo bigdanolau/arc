@@ -2,26 +2,36 @@ import datetime
 from django.shortcuts import render
 from django.db.models import Sum
 from tablib import Dataset
-from django.views.generic import ListView
+from django.views.generic import ListView,FormView
 from .models import Condominio
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import DeudaMixin,EstadisticasMixin
 from applications.pagos.mixins import PagosMixin
-class CondominioListView(EstadisticasMixin,PagosMixin,DeudaMixin,LoginRequiredMixin,ListView):
+from .forms import AddAbono
+from applications.pagos.models import Pago
+class CondominioListView(EstadisticasMixin,PagosMixin,DeudaMixin,LoginRequiredMixin,FormView):
     login_url = reverse_lazy("Users:login")
     context_object_name = "deudasMes"
     model = Condominio
     template_name = "user/home.html"
-    
-    def get_queryset(self):
-        usuario = self.request.user.id
-        if(not self.request.GET.get('fecha')):
-           
-            return Condominio.objects.listar_mes(usuario)
-        else:
-            return Condominio.objects.buscar_mes(self.request.GET.get('fecha'),self.request.GET.get('fecha_uno'),usuario)
-    
+    form_class = AddAbono
+    success_url = "/home"
+    def form_valid(self,form):
+      
+       
+        date1 = datetime.datetime.strptime(str(form.cleaned_data['fecha']),'%Y-%m-%d').date()
+      
+        abono = Pago(
+            monto = int(form.cleaned_data['monto'].replace('.','').replace(',','')),
+            fecha = date1,
+            deuda = form.cleaned_data['deuda'],
+            id_usuario = form.cleaned_data['id_usuario'],
+            id_apartamento = form.cleaned_data['id_apartamento'],
+            nombre_propietario = form.cleaned_data['nombre_propietario']
+        )
+        abono.save()
+        return super(CondominioListView,self).form_valid(form)
 
 class ImportarExcel(ListView):
     model = Condominio
