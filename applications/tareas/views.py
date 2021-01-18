@@ -5,6 +5,3 @@ from django.views.generic import FormView
 from .models import TareaModel
 
 
-class TareasListView(FormView):
-    model = TareaModel
-    template_name = "tareas/home.html"

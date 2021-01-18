@@ -5,8 +5,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
     integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
     crossorigin="anonymous" />
+<style>
+    .lobilists .lobilist-add-todo-form {
+    padding: 10px;
+    visibility: hidden;
+}
+
+</style>
 {% endblock estilos %}
 {% block scripts %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
     integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
     crossorigin="anonymous"></script>
@@ -17,63 +25,60 @@
 <script>
     $(document).ready(function () {
         $('.lobilist-demo').lobiList({
+            afterMarkAsDone: function (item, elemento) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        id: elemento.id,
+                        estado: 'True',
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+
+                });
+            },
+            afterMarkAsUndone: function (item,elemento) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        id: elemento.id,
+                        estado: 'False',
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+
+                });
+            },
             lists: [
                 {
-                    title: 'PENDIENTE',
+                    title: 'Tareas',
                     defaultStyle: 'lobilist-info',
                     items: [
-                        {
-                            title: 'Floor cool cinders',
-                            description: 'Thunder fulfilled travellers folly, wading, lake.',
-                            dueDate: '2015-01-31'
-                        },
-                        {
-                            title: 'Periods pride',
-                            description: 'Accepted was mollis',
-                            done: true
-                        },
-                        {
-                            title: 'Flags better burns pigeon',
-                            description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank treacherously darkling.'
-                        },
-                        {
-                            title: 'Accepted was mollis',
-                            description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank treacherously darkling.',
-                            dueDate: '2015-02-02'
-                        }
-                    ]
+                        {% for pendientes in tareas %}
+            {
+                    title: `<a href="http://{{request.get_host}}/tareas/detalle/{{pendientes.id}}">{{pendientes.titulo}}</a>`,
+                    id: '{{pendientes.id}}',
+                    description: '{{pendientes.contenido|truncatechars:20}}',
+                    dueDate: '{{pendientes.fecha_vencimiento}}',
+                    {% if pendientes.estado == True %}
+                        {{ "done: true,"}}
+                    {% endif %}
                 },
-                {
-                    title: 'COMPLETADO',
-                    items: [
-                        {
-                            title: 'Composed trays',
-                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
-                        },
-                        {
-                            title: 'Chic leafy'
-                        },
-                        {
-                            title: 'Guessed interdum armies chirp writhes most',
-                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            dueDate: '2015-02-04',
-                            done: true
-                        }
-                    ]
-                }
+        {% endfor %}
+               
             ]
-        });
+        }
+    ]
+});
     });
 
 </script>
 {% endblock scripts %}
 
 {% block body %}
-
 <div class="flex-fill p-3 row no-gutters">
     <div class="lobilist-demo" style="padding-top: 2em;padding-left: 2em;"></div>
     <br>
 </div>
+
 
 
 {% endblock body %}

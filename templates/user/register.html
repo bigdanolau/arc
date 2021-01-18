@@ -1,0 +1,70 @@
+{% extends 'base_dash.html' %}
+{% load static %}
+{% block estilos %}
+<link href="{% static 'recursos/css/lobilist.css'%}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+    integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+    crossorigin="anonymous" />
+<style>
+    .lobilists .lobilist-add-todo-form {
+    padding: 10px;
+    visibility: hidden;
+}
+
+</style>
+{% endblock estilos %}
+{% load crispy_forms_tags %}
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"
+    integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw=="
+    crossorigin="anonymous"></script>
+<script src="{% static 'recursos/js/lobilist.js'%}"></script>
+
+{% endblock scripts %}
+
+{% block body %}
+<div class="flex-fill p-3">
+    <h1>Crear Usuario</h1><br>
+    <div class="d-flex justify-content-between">
+<div class=" p-3 row">
+    
+    <form method="POST">{% csrf_token %}
+        <div class="row">
+            
+            <div class="col-6">
+              {{ form.username|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.password|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.email|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.nombre|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.empresa|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.tipo|as_crispy_field }}
+            </div>
+            
+            
+          </div>
+        
+        
+        <div class="form-button">
+            <button id="submit" type="submit" class="btn btn-success">Crear</button>
+        </div>
+    </form>
+    <br>
+</div>
+</div></div>
+
+
+{% endblock body %}

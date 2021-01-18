@@ -19,3 +19,13 @@ class DeudasManager (models.Manager):
             id_usuario = usuario
         )
         return resultado
+    
+    
+    def buscar_usuario(self,id_apartamento):
+        resultado = self.filter(
+            
+            id_apartamento = id_apartamento
+        ).order_by('id')[:1]
+        return resultado[0]
+
+   

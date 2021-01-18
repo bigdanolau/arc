@@ -10,6 +10,7 @@ class Pago(models.Model):
     id_usuario = models.IntegerField(null=False)
     id_apartamento = models.IntegerField(null=False)
     nombre_propietario = models.TextField()
+    numero_factura = models.TextField(default="0")
     objects = PagoaManager()
 
     class Meta:

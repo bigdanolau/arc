@@ -21,3 +21,10 @@ class PagoaManager(models.Manager):
         )
         return resultado
     
+    def pago_apartamento(self,id_apartamento):
+        
+        resultado = self.filter(
+            id_apartamento = id_apartamento
+        )
+        return resultado
+    

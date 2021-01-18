@@ -49,6 +49,7 @@ class ImportarExcel(ListView):
                 propietario=data[2],
                 torre=data[3],
                 apartamento = data[4],
+                numero_meses = data[5],
                 total_mes = data[14].replace(' ', '').replace('$','').replace(',',''),
                 id_usuario = request.user.id,
                 id_apartamento = str(request.user.id)+data[3]+''+data[4],
