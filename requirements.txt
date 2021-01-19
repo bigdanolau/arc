@@ -5,6 +5,7 @@ Django==3.1.4
 django-admin==2.0.1
 django-adminlte2==0.4.3
 django-adminlte3==0.1.6
+django-crispy-forms==1.10.0
 django-excel-base==1.0.4
 django-excel-response2==3.0.2
 django-import-export==2.4.0
