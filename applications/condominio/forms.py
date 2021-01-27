@@ -1,5 +1,6 @@
 from django import forms
 from applications.pagos.models import Pago
+
 class AddAbono(forms.ModelForm):
     monto = forms.CharField(
         required=True,
@@ -7,7 +8,8 @@ class AddAbono(forms.ModelForm):
         widget= forms.TextInput(
             attrs = {
                 'placeholder': 'Monto',
-                'class': 'form-control'
+                'class': 'form-control',
+                
             }
         )
         )
@@ -48,8 +50,11 @@ class AddAbono(forms.ModelForm):
     fecha = forms.DateField(
         required=True,
         label="Fecha",
+        
+     
         widget= forms.DateInput(
             attrs = {
+                
                 'placeholder': 'Fecha del abono',
                 'class': 'form-control',
                 'type': 'date'

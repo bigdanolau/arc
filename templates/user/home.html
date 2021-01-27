@@ -40,7 +40,7 @@
                                 {% for pagos_d in pagos%}
                                 <tr>
                                     <th scope="row">{{pagos_d.id_apartamento}}</th>
-                                    <td>{{pagos_d.monto}}</td>
+                                    <td class="moneda" valor="{{pagos_d.monto}}">{{pagos_d.monto}}</td>
                                     <td>{{pagos_d.fecha}}</td>
 
 
@@ -78,7 +78,9 @@
                                 <tr>
 
                                     <td>{{deudores.propietario}}</td>
-                                    <td><a href="http://{{request.get_host}}/tareas/listado/{{deudores.id_apartamento}}">{{deudores.id_apartamento}}</a></td>
+                                    <td><a
+                                            href="http://{{request.get_host}}/tareas/listado/{{deudores.id_apartamento}}">{{deudores.id_apartamento}}</a>
+                                    </td>
                                     <td class="moneda" valor="{{deudores.total_mes}}">{{deudores.total_mes}}</td>
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#exampleModalLong" onclick="
@@ -117,7 +119,7 @@
 
 
                 </div>
-               
+
             </div>
         </div>
         <div class="col-lg-4 px-2 pt-2 order-lg-2 order-1">
@@ -125,7 +127,8 @@
                 <div class="d-flex p-3">
                     <div><canvas id="totalmes_g"></canvas></div>
                     <div class="pl-3 pt-3">
-                        <div style="font-size: 34px;"><b class="text-light " id="totalmes" valor="{{totalMes}}">{{totalMes}}</b>
+                        <div style="font-size: 34px;"><b class="text-light " id="totalmes"
+                                valor="{{totalMes}}">{{totalMes}}</b>
                         </div>
                         <div class="text-light"><b>TOTAL DE LA DEUDA</b></div>
                     </div>
@@ -135,7 +138,8 @@
                 <div class="d-flex p-3">
                     <div><canvas id="totalrecaudo_g"></canvas></div>
                     <div class="pl-3 pt-3">
-                        <div style="font-size: 34px;"><b class="text-light monto" id="total_recaudo_mes" valor="{{total_pagos_mes}}">{{total_pagos_mes}}</b></div>
+                        <div style="font-size: 34px;"><b class="text-light monto" id="total_recaudo_mes"
+                                valor="{{total_pagos_mes}}">{{total_pagos_mes}}</b></div>
                         <div class="text-light"><b>TOTAL RECAUDO</b></div>
                     </div>
                 </div>
@@ -181,9 +185,9 @@
                         data-thousands="." data-decimal="," data-precision="0">
                 </div>
 
-                <form method="post">
+                <form method="post" id="abono_formulario">
                     {% csrf_token %}
-                    {% for formulario in  form %}
+                    {% for formulario in form %}
                     {{formulario.label}}
                     {{formulario}}
                     {% endfor %}
@@ -209,7 +213,14 @@
 <script src="https://gw.alipayobjects.com/os/antv/assets/f2/3.2.3/f2.js"></script>
 <script>
     $(document).ready(function () {
+        var now = new Date();
 
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+        $('#id_fecha').val(today);
 
 
         var url = window.location.href;
@@ -307,7 +318,7 @@
             }
         });
         $('#abonos').DataTable({
-
+            "order": [[2, "desc"]],
             "language": {
 
                 "sProcessing": "Procesando...",
@@ -361,33 +372,34 @@
         });
     });
 
-    function convertir_moneda() {
-        $(".moneda").each(function () {
-            let valor = $(this).attr("valor");
-            $(this).text(formatter.format(valor));
-        });
-    }
-    const formatter = new Intl.NumberFormat('es-CO', {
-        style: 'currency',
-        currency: 'COP',
-        minimumFractionDigits: 0
-    });
+
 
     $("#total_recaudo_mes").text(formatter.format('{{total_pagos_mes}}'))
     $("#totalmes").text(formatter.format('{{totalMes}}'))
 </script>
 <script>
-    var data1 = "{{porcentaje_mes}}";
-    console.log("{{totalMes}}");
+
+    $('#abono_formulario').submit(function () {
+        var value = $('#id_monto').maskMoney('unmasked')[0];
+        $('#id_monto').val(value);
+        $('#id_monto').maskMoney('destroy');
+    })
     $(function () {
-        //$('#id_monto').maskMoney({thousands:'.', decimal:',', allowZero:false});
+        $('#id_monto').maskMoney({ thousands: '.', decimal: ',', allowZero: false });
         //$('#total_recaudo_mes').maskMoney({thousands:'.', decimal:',', allowZero:false});
     });
 
     $(document).ready(function () {
+        var datap1 = "{{porcentaje_mes}}";
+        var datap2 = "{{porcentaje_mes_pago}}";
+
         const data = [{
             x: '1',
-            y: parseInt(data1)
+            y: parseInt(datap1)
+        }];
+        const data2 = [{
+            x: '1',
+            y: parseInt(datap2)
         }];
 
         const chart = new F2.Chart({
@@ -405,7 +417,7 @@
         });
         chart.guide().text({
             position: ['50%', '50%'],
-            content: parseFloat(data1) + '%',
+            content: parseFloat(datap1) + '%',
             style: {
                 fill: '#fff',
             }
@@ -449,7 +461,7 @@
             padding: 0,
             pixelRatio: window.devicePixelRatio
         });
-        chart2.source(data, {
+        chart2.source(data2, {
             y: {
                 max: 100,
                 min: 0
@@ -463,6 +475,13 @@
             innerRadius: 0.8,
             radius: 0.85,
 
+        });
+        chart2.guide().text({
+            position: ['50%', '50%'],
+            content: parseFloat(datap2) + '%',
+            style: {
+                fill: '#fff',
+            }
         });
         chart2.guide().arc({
             start: [0, 0],

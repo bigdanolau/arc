@@ -1,11 +1,12 @@
 from django.db import models
 from applications.condominio.models import Condominio
+from datetime import datetime
 # Create your models here.
 from .managers import PagoaManager
 class Pago(models.Model):
     
     monto = models.IntegerField(null=False)
-    fecha = models.DateField(null= False)
+    fecha = models.DateField(null= False,default=datetime.now)
     deuda = models.ForeignKey(Condominio, on_delete=models.CASCADE,null=False)
     id_usuario = models.IntegerField(null=False)
     id_apartamento = models.IntegerField(null=False)

@@ -4,7 +4,9 @@ from django.views.generic import ListView,DetailView,CreateView,TemplateView
 from .models import SeguimientoModel
 from ..condominio.models import Condominio
 from ..pagos.models import Pago
+from ..comentarios.models import ComentarioModel
 from .mixins import TareasMixin
+
 class TareasListView(ListView,):
     model = SeguimientoModel
     template_name = "tareas/home.html"
@@ -36,6 +38,7 @@ class detalleTarea(TemplateView,TareasMixin):
         print(self.kwargs['pk'])
         context['tarea'] = SeguimientoModel.objects.traer(self.kwargs['pk'])
         context['deuda'] = Condominio.objects.buscar_usuario(self.kwargs['deuda'])
+        context['comentario'] = ComentarioModel.objects.get_comentarios(self.kwargs['pk'])
         
         return context
     

@@ -44,10 +44,13 @@ class EstadisticasMixin(object):
         if(not total_deuda_mes is None and not total_pagos_mes is None) :
            
             context['porcentaje_mes'] =  ((total_deuda_mes - total_pagos_mes)/ total_deuda_mes ) * 100
+            context['porcentaje_mes_pago'] =  ((total_pagos_mes/ total_deuda_mes ) * 100)
             context['total_pagos_mes'] = str(total_pagos_mes).split(',',1)[0]
             
         else:
+            context['totalMes'] = 0
             context['porcentaje_mes'] =  0
+            context['porcentaje_mes_pago'] =  0
             context['porcentaje_mes'] =  0
             
             

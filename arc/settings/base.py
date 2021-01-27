@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'applications.condominio',
     'applications.seguimiento',
+    'applications.comentarios',
     'applications.users',
     'applications.pagos',
     'crispy_forms',
